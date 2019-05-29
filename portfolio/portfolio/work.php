@@ -1,4 +1,12 @@
 
+<?php
+
+					include'php/connexion.php';
+					$pdo = $cnx;
+					$sql = "SELECT * FROM items";
+					$resultat = $pdo->query($sql);
+
+?>
 <!DOCTYPE html>
 
 <html class="no-js"> 
@@ -206,7 +214,7 @@
 							</a>
 						</div>
 					</div>
-					<div class="col-md-7 text-center animate-box">
+					<!-- <div class="col-md-7 text-center animate-box">
 						<div class="work" style="background-image: url(images/animation.png);">
 							<a href="project/animation/index.html" target="_blank"  class="view">
 								<span>View Demo</span>
@@ -219,28 +227,39 @@
 								<span>View Demo</span>
 							</a>
 						</div>
-					</div>
-					<?php
-					include'php/connexion.php';
-					$pdo = $cnx;
-					$sql = "SELECT * FROM items";
-					$resultat = $pdo->query($sql);
-					foreach ($resultat as $roww){
-						echo '<div class="col-md-5 text-center animate-box">'	;
-						// echo '<div class='work' style='background-image: url('.$roww['image'].');'>';
+					</div> -->
+					
+					
+					<?php foreach($resultat as $itemD):?>
+						<div class="col-md-5 text-center animate-box">	
+						<!-- <div class='work' style='background-image: url('.$roww['image'].');'>'; -->
 
-						echo '<div class="work" style="background-image: url("../img/items/'.$roww['img'].'");">';
+						<div class="work" style="background-image: url(images/<?= $itemD['img'];?>) ;"> 
 
-						echo '<a href="project/'.$roww['title'].'/index.html" target="_blank"  class="view">';
+						<!-- <a href="project/'.$roww['title'].'/index.html" target="_blank"  class="view">; -->
 
-						// echo '<a href="project/".$roww['link']."/index.html" target="_blank"  class="view">';
-						echo '<span>View Demo</span>';
-						echo '</a>';	
-						echo '</div>';
-						echo '</div>';
+						<a href="project/<?=$itemD['title']; ?>" target="_blank"  class="view">
+						<span>View Demo</span>
+						</a>	
+						 </div>
+						 </div>
 
-					}
-					?>
+					
+					<?php endforeach;?>
+
+
+
+						 
+
+
+
+
+
+
+
+
+
+
 
 				</div>
 			</div>
